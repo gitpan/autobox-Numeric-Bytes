@@ -3,6 +3,7 @@ use inc::Module::Install;
 name        'autobox-Numeric-Bytes';
 all_from    'lib/autobox/Numeric/Bytes.pm';
 
+requires 'autobox'               => 2.55;
 requires 'bigint'                => 0;
 
 build_requires 'Test::More'      => 0;

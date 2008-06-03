@@ -5,44 +5,51 @@ use warnings;
 use Carp;
 
 use bigint;
-use autobox;
+use base qw(autobox);
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
-sub SCALAR::bytes {
+sub import {
+    shift->SUPER::import(NUMBER => 'autobox::Numeric::Bytes::Impl', @_);
+}
+
+package # hide from pause
+    autobox::Numeric::Bytes::Impl;
+
+sub bytes {
     return $_[0];
 }
-*SCALAR::byte = \&SCALAR::bytes;
+*byte = \&bytes;
 
-sub SCALAR::kilobytes {
+sub kilobytes {
     return $_[0] * 1024;
 }
-*SCALAR::kilobyte = \&SCALAR::kilobytes;
+*kilobyte = \&kilobytes;
 
-sub SCALAR::megabytes {
+sub megabytes {
     return $_[0] * 1024 * 1024;
 }
-*SCALAR::megabyte = \&SCALAR::megabytes;
+*megabyte = \&megabytes;
 
-sub SCALAR::gigabytes {
+sub gigabytes {
     return $_[0] * 1024 * 1024 * 1024;
 }
-*SCALAR::gigabyte = \&SCALAR::gigabytes;
+*gigabyte = \&gigabytes;
 
-sub SCALAR::terabytes {
+sub terabytes {
     return $_[0] * 1024 * 1024 * 1024 * 1024;
 }
-*SCALAR::terabyte = \&SCALAR::terabytes;
+*terabyte = \&terabytes;
 
-sub SCALAR::petabytes {
+sub petabytes {
     return $_[0] * 1024 * 1024 * 1024 * 1024 * 1024;
 }
-*SCALAR::petabyte = \&SCALAR::petabytes;
+*petabyte = \&petabytes;
 
-sub SCALAR::exabytes {
+sub exabytes {
     return $_[0] * 1024 * 1024 * 1024 * 1024 * 1024 * 1024;
 }
-*SCALAR::exabyte = \&SCALAR::exabytes;
+*exabyte = \&exabytes;
 
 1;
 
